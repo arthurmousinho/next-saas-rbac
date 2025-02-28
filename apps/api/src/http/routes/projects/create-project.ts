@@ -22,7 +22,7 @@ export function createProject(app: FastifyInstance) {
                     summary: 'Create a new project',
                     security: [{ bearerAuth: [] }],
                     params: z.object({
-                        slug: z.string().uuid(),
+                        slug: z.string(),
                     }),
                     body: z.object({
                         name: z.string(),
