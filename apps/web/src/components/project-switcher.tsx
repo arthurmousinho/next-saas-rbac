@@ -18,6 +18,7 @@ import {
 import { Skeleton } from './ui/skeleton'
 
 export function ProjectSwitcher() {
+
     const { slug: orgSlug, project: projectSlug } = useParams<{
         slug: string
         project: string
@@ -61,7 +62,6 @@ export function ProjectSwitcher() {
                         )}
                     </>
                 )}
-
                 {isLoading ? (
                     <Loader2 className="ml-auto size-4 shrink-0 animate-spin text-muted-foreground" />
                 ) : (
