@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { OrganizationForm } from "../../organization-form";
 import { ShutdownOrganizationButton } from "./shutdown-organization-button";
 import { getOrganization } from "@/http/organization/get-organization";
+import Billing from "./billing";
 
 export default async function SettingsPage() {
 
@@ -44,6 +45,9 @@ export default async function SettingsPage() {
                             />
                         </CardContent>
                     </Card>
+                )}
+                {canGetBilling && (
+                    <Billing />
                 )}
                 {canShutdownOrganization && (
                     <Card>
