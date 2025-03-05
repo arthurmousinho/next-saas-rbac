@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useFormState } from "@/hooks/use-form-state";
-import { createOrganizationAction } from "./actions";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, Loader2 } from "lucide-react";
+import { createOrganizationAction } from "../create-organization/actions";
 
 export function OrganizationForm() {
 
@@ -36,7 +36,7 @@ export function OrganizationForm() {
 
             <div className="space-y-1">
                 <Label htmlFor="name">Organization Name</Label>
-                <Input name="name" id="name" type="text" />
+                <Input name="name" id="name" type="text" placeholder="Acme Inc." />
 
                 {formState.errors?.name && (
                     <p className="text-xs font-medium text-red-500 dark:text-red-400">
