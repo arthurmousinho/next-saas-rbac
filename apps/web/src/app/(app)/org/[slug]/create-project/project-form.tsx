@@ -8,11 +8,18 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { createProjectAction } from "./actions";
 import { Textarea } from "@/components/ui/textarea";
+import { queryClient } from "@/lib/react-query";
+import { useParams } from "next/navigation";
 
 export function ProjectForm() {
 
+    const { slug } = useParams<{ slug: string }>();
+
     const [formState, handleSubmit, isPending] = useFormState(
-        createProjectAction
+        createProjectAction,
+        () => {
+            queryClient.invalidateQueries({ queryKey: [slug, 'projects'] })
+        }
     )
 
     return (
