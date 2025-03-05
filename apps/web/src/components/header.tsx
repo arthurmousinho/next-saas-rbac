@@ -13,7 +13,7 @@ export default async function Header() {
     const permissions = await ability()
 
     return (
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2 mb-2">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between mb-2">
             <div className="flex items-center gap-3">
                 <Image
                     src={rocketseatLogo}

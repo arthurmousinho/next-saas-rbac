@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import { Tabs } from "@/components/tabs";
 
 export default async function OrgLayout({
     children,
@@ -8,9 +9,10 @@ export default async function OrgLayout({
 
     return (
         <div>
-            <header className="pt-6">
+            <div className="pt-6">
                 <Header />
-            </header>
+                <Tabs />
+            </div>
             <main className="mx-auto w-full max-w-[1200px] py-4">
                 {children}
             </main>
