@@ -7,13 +7,21 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useFormState } from "@/hooks/use-form-state";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { createOrganizationAction } from "../create-organization/actions";
+import { createOrganizationAction, updateOrganizationAction, type OrganizationSchema } from "./actions";
 
-export function OrganizationForm() {
+interface OrganizationFormProps {
+    isUpdating?: boolean;
+    initialData?: OrganizationSchema;
+}
 
-    const [formState, handleSubmit, isPending] = useFormState(
-        createOrganizationAction
-    )
+export function OrganizationForm({
+    isUpdating = false,
+    initialData,
+}: OrganizationFormProps) {
+
+    const formAction = isUpdating ? updateOrganizationAction : createOrganizationAction
+
+    const [formState, handleSubmit, isPending] = useFormState(formAction);
 
     return (
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -36,7 +44,13 @@ export function OrganizationForm() {
 
             <div className="space-y-1">
                 <Label htmlFor="name">Organization Name</Label>
-                <Input name="name" id="name" type="text" placeholder="Acme Inc." />
+                <Input
+                    name="name"
+                    id="name"
+                    type="text"
+                    placeholder="Acme Inc."
+                    defaultValue={initialData?.name}
+                />
 
                 {formState.errors?.name && (
                     <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -53,6 +67,7 @@ export function OrganizationForm() {
                     type="text"
                     inputMode="url"
                     placeholder="example.com"
+                    defaultValue={initialData?.domain ?? undefined}
                 />
 
                 {formState.errors?.domain && (
@@ -67,6 +82,7 @@ export function OrganizationForm() {
                     <Checkbox
                         id="shouldAttachUsersByDomain"
                         name="shouldAttachUsersByDomain"
+                        defaultChecked={initialData?.shouldAttachUsersByDomain}
                     />
                     <label
                         htmlFor="shouldAttachUsersByDomain"
