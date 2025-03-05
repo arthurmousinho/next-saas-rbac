@@ -21,7 +21,7 @@ export async function getCurrentMembership() {
         return null;
     }
 
-    const { membership } = await getMembership(orgSlug);
+    const { membership } = await getMembership({ slug: orgSlug });
     return membership
 }
 

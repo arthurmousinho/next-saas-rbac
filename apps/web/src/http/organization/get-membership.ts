@@ -10,7 +10,11 @@ interface Response {
     }
 }
 
-export async function getMembership(slug: string) {
-    const result = await api.get(`organizations/${slug}/membership`).json<Response>()
+interface Request {
+    slug: string;
+}
+
+export async function getMembership(data: Request): Promise<Response> {
+    const result = await api.get(`organizations/${data.slug}/membership`).json<Response>()
     return result
 }
