@@ -18,7 +18,14 @@ interface Request {
 
 export async function getMembers(data: Request): Promise<Reponse> {
     const result = await api
-        .get(`organization/${data.slug}/members`)
+        .get(
+            `organization/${data.slug}/members`,
+            {
+                next: {
+                    tags: [`${data.slug}/members`]
+                }
+            }
+        )
         .json<Reponse>()
 
     return result
