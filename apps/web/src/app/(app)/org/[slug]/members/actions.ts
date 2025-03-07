@@ -1,6 +1,7 @@
 'use server'
 
 import { getCurrentOrgSlug } from "@/auth/auth";
+import { revokeInvite } from "@/http/invites/revoke-invite";
 import { removeMember } from "@/http/members/remover-member";
 import { updateMember } from "@/http/members/update-member";
 import type { Role } from "@saas/auth";
@@ -40,4 +41,21 @@ export async function updateMemberAction(parms: UpdateMemberRoleActionParams) {
   });
 
   revalidateTag(`${currentOrgSlug}/members`);
+}
+
+interface RevokeInviteActionParams {
+  inviteId: string;
+}
+
+export async function revokeInviteAction(params: RevokeInviteActionParams) {
+  const { inviteId } = params;
+
+  const currentOrgSlug = await getCurrentOrgSlug();
+
+  await revokeInvite({
+    orgSlug: currentOrgSlug!,
+    inviteId
+  });
+
+  revalidateTag(`${currentOrgSlug}/invites`);
 }

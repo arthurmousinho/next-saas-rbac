@@ -13,7 +13,7 @@ export function revokeInvite(app: FastifyInstance) {
     app
         .withTypeProvider<ZodTypeProvider>()
         .register(authMiddleware)
-        .post(
+        .delete(
             '/organization/:slug/invites/:inviteId',
             {
                 schema: {
@@ -21,7 +21,7 @@ export function revokeInvite(app: FastifyInstance) {
                     summary: 'Revoke an invite',
                     security: [{ bearerAuth: [] }],
                     params: z.object({
-                        slug: z.string().uuid(),
+                        slug: z.string(),
                         inviteId: z.string().uuid()
                     }),
                     response: {

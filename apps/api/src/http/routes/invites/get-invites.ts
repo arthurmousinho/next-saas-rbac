@@ -23,7 +23,7 @@ export function getInvites(app: FastifyInstance) {
                     summary: 'Get all organization invites',
                     security: [{ bearerAuth: [] }],
                     params: z.object({
-                        slug: z.string().uuid(),
+                        slug: z.string(),
                     }),
                     response: {
                         200: z.object({
