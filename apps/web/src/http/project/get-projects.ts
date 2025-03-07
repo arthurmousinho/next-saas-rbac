@@ -18,7 +18,7 @@ interface GetProjectsResponse {
     }[]
 }
 
-export async function getProjects(org: string) {
+export async function getProjects(org: string): Promise<GetProjectsResponse> {
     const result = await api
         .get(`organization/${org}/projects`)
         .json<GetProjectsResponse>()
