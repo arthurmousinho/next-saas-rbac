@@ -2,9 +2,8 @@ import { ability, getCurrentOrgSlug } from "@/auth/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { getInvites } from "@/http/invites/get-invites";
-import { Button } from "@/components/ui/button";
-import { XOctagon } from "lucide-react";
 import { RevokeInviteButton } from "./revoke-invite-button";
+import { CreateInviteForm } from "./create-invite-form";
 
 export async function Invites() {
 
@@ -26,7 +25,7 @@ export async function Invites() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-
+                        <CreateInviteForm />
                     </CardContent>
                 </Card>
             )}
